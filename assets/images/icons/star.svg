@@ -1,0 +1,15 @@
+<svg width="576" height="512" xmlns="http://www.w3.org/2000/svg">
+ <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m528.1,172.5l-146.1,-21.3l-65.3,-132.4c-11.7,-23.6 -45.6,-23.9 -57.4,0l-65.3,132.4l-146.1,21.3c-26.2,3.8 -36.7,36.1 -17.7,54.6l105.7,103l-25,145.5c-4.5,26.3 23.2,46 46.4,33.7l130.7,-68.7l130.7,68.7c23.2,12.2 50.9,-7.4 46.4,-33.7l-25,-145.5l105.7,-103c19,-18.5 8.5,-50.8 -17.7,-54.6zm-139.5,140.8l23.7,138.4l-124.3,-65.3l-124.3,65.3l23.7,-138.4l-100.6,-98l139,-20.2l62.2,-126l62.2,126l139,20.2l-100.6,98z"/>
+  <rect id="svg_2" height="351.00001" width="85" y="64.99999" x="246" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-90.1004, 287.004, 225.452)" id="svg_3" height="406.00871" width="85" y="22.44742" x="244.5043" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-90.1004, 287.498, 298.919)" id="svg_4" height="297.03167" width="87.99299" y="150.40349" x="243.50199" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-90.1004, 285.496, 383.425)" id="svg_5" height="287.02116" width="85" y="239.91396" x="242.99582" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-90.1004, 281.991, 167.452)" id="svg_6" height="124.02666" width="85" y="105.43906" x="239.49119" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-105.643, 212.991, 399.452)" id="svg_7" height="124.02666" width="85" y="337.43906" x="170.49119" stroke="#000" fill="#000000"/>
+  <rect transform="rotate(-68.4326, 369.991, 414.452)" id="svg_8" height="124.02666" width="85" y="352.43906" x="327.49119" stroke="#000" fill="#000000"/>
+ </g>
+</svg>
