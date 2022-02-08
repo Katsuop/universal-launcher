@@ -27,10 +27,12 @@
         <file>images/icons/home.svg</file>  
         <file>images/icons/cog.svg</file>
         <file>images/icons/box.svg</file>
+        <file>images/icons/user-circle.svg</file>        
         <file>images/icons/arrow-alt-circle-right.svg</file>
         <file>images/icons/arrow-alt-circle-left.svg</file>
 
         <file>images/logo.png</file>
+        <file>images/head.png</file>
 
         <file>images/icons/plus-square.svg</file>
         <file>images/background/mCard.jpg</file>

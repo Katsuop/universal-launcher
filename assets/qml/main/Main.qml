@@ -69,6 +69,6 @@ Page {
         AppGlobal.router.registerRoute("settings", "/qml/main/pages/SettingsPage.qml")
         AppGlobal.router.registerRoute("accounts", "/qml/main/pages/AccountsPage.qml")
 
-        AppGlobal.router.goTo("home")
+        AppGlobal.router.goTo("accounts")
     }
 }
