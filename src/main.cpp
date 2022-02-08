@@ -1,14 +1,12 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <QLocale>
-#include <QTranslator>
-
 #include <QQmlDebuggingEnabler>
 
 #include "AppGlobal.h"
+#include <QPointer>
 
-void register_singletons() { AppGlobal::registerType(); }
+#include <QDir>
 
 int main(int argc, char *argv[]) {
   QQmlDebuggingEnabler enabler;
@@ -19,45 +17,40 @@ int main(int argc, char *argv[]) {
   QGuiApplication app(argc, argv);
 
   /*
-   * Enabling translations
-   */
-  QTranslator translator;
-  const QStringList uiLanguages = QLocale::system().uiLanguages();
-  for (const QString &locale : uiLanguages) {
-    const QString baseName = "universal-launcher_" + QLocale(locale).name();
-    if (translator.load(":/i18n/" + baseName)) {
-      app.installTranslator(&translator);
-      break;
-    }
-  }
-
-  /*
    * Load the view engine and the main view
    */
   QQmlApplicationEngine engine;
 
-  register_singletons();
+  QPointer<AppGlobal> appGlobal = AppGlobal::instance();
+  appGlobal->registerType();
+  appGlobal->translator()->registerLanguages(&app, &engine);
 
-  auto settings = AppGlobal::instance()->settings();
-
-  settings->load();
-
-  bool alreadySetup;
-  auto err = settings->get()["configured"].get(alreadySetup);
-  if (err)
-    alreadySetup = false;
+  auto settings = appGlobal->settings()->get();
+  bool alreadySetup = settings->value("configured", false);
 
   if (alreadySetup) {
-    engine.load(QUrl(QStringLiteral("qrc:/qml/main/MainWindow.qml")));
+    if (settings->contains("theme") && settings->at("theme").is_string()) {
+      appGlobal->themes()->changeTheme(
+          settings->at("theme").get<std::string>());
+    }
+
+    if (settings->contains("language") &&
+        settings->at("language").is_string()) {
+      appGlobal->translator()->setLanguage(
+          settings->at("language").get<std::string>());
+    }
+
+    engine.load(QUrl("qrc:/qml/main/MainWindow.qml"));
   } else {
-    engine.load(QUrl(QStringLiteral("qrc:/qml/setup/SetupWindow.qml")));
-  }
-  if (engine.rootObjects().isEmpty()) {
-    AppGlobal::destroy();
-    QCoreApplication::exit(-1);
+    app.connect(appGlobal.data(), &AppGlobal::setupFinished, &app, [&engine]() {
+      engine.load(QUrl("qrc:/qml/main/MainWindow.qml"));
+    });
+    engine.load(QUrl("qrc:/qml/setup/SetupWindow.qml"));
   }
 
-  AppGlobal::destroy();
+  if (engine.rootObjects().isEmpty()) {
+    QCoreApplication::exit(-1);
+  }
 
   // Show the application
   return app.exec();

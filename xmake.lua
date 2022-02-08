@@ -6,14 +6,14 @@ rule("install_bin")
 	end)
 rule_end()
 
-add_rules("mode.debug", "mode.release")
+add_rules("mode.debug", "mode.release", "mode.valgrind")
 
 add_repositories("local-repo xmake/repos")
 
 set_policy("package.requires_lock", true)
 includes("xmake/scripts/rules.lua")
 
-set_allowedmodes("debug", "release")
+set_allowedmodes("debug", "release", "valgrind")
 set_allowedplats("windows", "mingw", "linux", "macosx")
 set_allowedarchs("windows|x64", "mingw|x86_64", "linux|x86_64", "macosx|x86_64")
 set_defaultmode("debug")
@@ -40,7 +40,7 @@ if is_plat("linux") then
     set_toolchains("gcc")
 end
 
-add_requires("simdjson", { system = false })
+add_requires("nlohmann_json")
 
 target("universal-launcher")
     add_rules("install_bin")
@@ -49,6 +49,7 @@ target("universal-launcher")
     set_kind("binary")
     add_files("src/**.cpp")
     add_files("src/**.h")
+
     add_files("assets/resources.qrc")
 
     set_installdir("./export")
@@ -56,7 +57,7 @@ target("universal-launcher")
     add_defines("QT_QML_DEBUG_NO_WARNING")
 
     add_frameworks("QtCore", "QtQml", "QtQuick", "QtNetworkAuth", "QtWebView")
-    add_packages("simdjson")
+    add_packages("nlohmann_json")
 
     on_load(function (target)
         import("detect.sdks.find_qt")

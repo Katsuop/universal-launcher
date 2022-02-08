@@ -1,20 +1,21 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import "."
+import UniversalLauncher 1.0
 
 Window {
     title: qsTr("Universal-Launcher - Setup")
-    width: 480
-    height: 720
+    width: 960
+    height: 640
     id: window
-    visible: isVisible
+    visible: true
 
-    property bool isVisible: true
     property bool screenInit: false
 
-    Text {
-        id: txt
-        text: "salut"
+    Setup {
+        id: main
+        anchors.fill : parent
     }
 
     Connections {
@@ -26,6 +27,14 @@ Window {
                 window.x = screen.width / 2 - window.width / 2
                 window.y = screen.height / 2 - window.height / 2
             }
+        }
+    }
+
+    Connections {
+        target: AppGlobal
+
+        function onSetupFinished() {
+            window.close();
         }
     }
 }

@@ -23,22 +23,26 @@ Button {
         
         
         radius: 5
-        color: "#F97316"
+        color: "transparent"
 
+        border {
+            color: AppGlobal.themes.current.textColor
+            width: 1
+        }
     }
 
     states: [
         State {
             name: "NORMAL"
-            PropertyChanges { target: bg; color: "#F97316" }
-            PropertyChanges { target: label; color: "white" }
-            PropertyChanges { target: iconOverlay; color: "white" }
+            PropertyChanges { target: bg; color: "transparent" }
+            PropertyChanges { target: label; color: AppGlobal.themes.current.textColor }
+            PropertyChanges { target: iconOverlay; color: AppGlobal.themes.current.textColor }
         },
         State {
             name: "HOVER"
-            PropertyChanges { target: bg; color: "#FB923C" }
-            PropertyChanges { target: label; color: "white" }
-            PropertyChanges { target: iconOverlay; color: "white" }
+            PropertyChanges { target: bg; color: AppGlobal.themes.current.textColor }
+            PropertyChanges { target: label; color: AppGlobal.themes.current.backgroundColor2 }
+            PropertyChanges { target: iconOverlay; color: AppGlobal.themes.current.backgroundColor2 }
         }
     ]
 
@@ -46,12 +50,12 @@ Button {
         Transition {
             from: "*"
             to: "HOVER"
-            ColorAnimation { duration: 50; easing.type: Easing.InOutQuad }
+            ColorAnimation { duration: 250; easing.type: Easing.InOutQuad }
         },
         Transition {
             from: "*"
             to: "NORMAL"
-            ColorAnimation { duration: 50; easing.type: Easing.InOutQuad }
+            ColorAnimation { duration: 250; easing.type: Easing.InOutQuad }
         }
 
     ]
@@ -94,7 +98,7 @@ Button {
             id: iconOverlay
             anchors.fill: icon
             source: icon
-            color: "white"
+            color: AppGlobal.themes.current.textColor
             antialiasing: true
             width: iconWidth
             height: iconHeight
@@ -102,7 +106,7 @@ Button {
 
         Text {
             id: label
-            color: "white"
+            color: AppGlobal.themes.current.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             anchors {
